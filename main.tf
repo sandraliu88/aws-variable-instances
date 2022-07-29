@@ -87,9 +87,10 @@ module "elb_http" {
   }
 }
 
-module "ec2_instances" {
-  source = "./modules/aws-instance"
-
+module "standard-instance" {
+  source  = "app.terraform.io/TF-Cloud-Demo-OE/standard-instance/aws"
+  version = "7.0.0"
+  
   for_each = var.project
 
   instance_count     = each.value.instances_per_subnet * length(module.vpc[each.key].private_subnets)
