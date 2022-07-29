@@ -69,7 +69,7 @@ module "elb_http" {
   subnets         = module.vpc[each.key].public_subnets
 
   number_of_instances = length(module.standard-instance[each.key].instance_ids)
-  instances           = module.standard-instance each.key].instance_ids
+  instances           = module.standard-instance[each.key].instance_ids
 
   listener = [{
     instance_port     = "80"
