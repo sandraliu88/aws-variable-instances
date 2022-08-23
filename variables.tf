@@ -8,15 +8,15 @@ variable "project" {
   description = "Map of project names to configuration"
   type        = map(any)
 # The below variables are required, but will be defined in Terraform Cloud/Enterprise. If not using TFCB/E uncomment variables. 
-#  default = {
-#    website-dev = {
-#      public_subnet_count  = 1,
-#      private_subnet_count = 1,
-#      instances_per_subnet = 2,
-#      instance_type        = "t2.large",
-#      environment          = "dev"
-#    },
-#  }
+  default = {
+    website-dev = {
+      public_subnet_count  = 1,
+      private_subnet_count = 1,
+      instances_per_subnet = 2,
+      instance_type        = "t2.large",
+      environment          = "dev"
+    },
+  }
 }
 
 variable "vpc_cidr_block" {
