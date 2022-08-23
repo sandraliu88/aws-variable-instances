@@ -12,7 +12,7 @@ variable "project" {
     website-dev = {
       public_subnet_count  = 1,
       private_subnet_count = 1,
-      instances_per_subnet = 2,
+      instances_per_subnet = 3,
       instance_type        = "t2.large",
       environment          = "dev"
     },
