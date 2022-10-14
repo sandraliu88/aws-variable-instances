@@ -9,7 +9,8 @@ data "aws_availability_zones" "available" {
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.66.0"
-
+  tags = {
+    Name = "oeghaneyan-demo"
   for_each = var.project
 
   cidr = var.vpc_cidr_block
@@ -25,7 +26,8 @@ module "vpc" {
 module "app_security_group" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
   version = "3.17.0"
-
+  tags = {
+    Name = "oeghaneyan-demo"
   for_each = var.project
 
   name        = "web-server-sg-${each.key}-${each.value.environment}"
@@ -38,7 +40,8 @@ module "app_security_group" {
 module "lb_security_group" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
   version = "3.17.0"
-
+  tags = {
+    Name = "oeghaneyan-demo"
   for_each = var.project
 
   name = "load-balancer-sg-${each.key}-${each.value.environment}"
@@ -57,7 +60,8 @@ resource "random_string" "lb_id" {
 module "elb_http" {
   source  = "terraform-aws-modules/elb/aws"
   version = "2.4.0"
-
+  tags = {
+    Name = "oeghaneyan-demo"
   for_each = var.project
 
   # Comply with ELB name restrictions 
@@ -90,7 +94,8 @@ module "elb_http" {
 module "standard-instance" {
   source  = "app.terraform.io/TF-Cloud-Demo-OE/standard-instance/aws"
   version = "7.1.0"
-
+  tags = {
+    Name = "oeghaneyan-demo"
   for_each = var.project
 
   instance_count     = each.value.instances_per_subnet * length(module.vpc[each.key].private_subnets)
