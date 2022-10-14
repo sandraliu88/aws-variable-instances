@@ -98,9 +98,6 @@ module "elb_http" {
 module "standard-instance" {
   source  = "app.terraform.io/TF-Cloud-Demo-OE/standard-instance/aws"
   version = "7.1.0"
-  tags = {
-    purpose = "oeghaneyan-demo"
-  }    
   for_each = var.project
 
   instance_count     = each.value.instances_per_subnet * length(module.vpc[each.key].private_subnets)
