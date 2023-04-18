@@ -19,7 +19,7 @@ variable "project" {
     website-prod = {
       public_subnet_count  = 1,
       private_subnet_count = 2,
-      instances_per_subnet = 4,
+      instances_per_subnet = 3,
       instance_type        = "t2.micro",
       environment          = "dev"
     },
