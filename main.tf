@@ -8,7 +8,7 @@ data "aws_availability_zones" "available" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.14.4"
+  version = "2.66.0"
   tags = {
     purpose = "oeghaneyan-demo"
   }
