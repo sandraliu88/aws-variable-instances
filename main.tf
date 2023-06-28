@@ -1,6 +1,14 @@
+terraform {
+  required_providers {
+    aws = {
+      version = "4.67.0"
+      source  = "hashicorp/aws"
+    }
+  }
+}
+
 provider "aws" {
   region = var.aws_region
-  version = "4.67.0"
 }
 
 data "aws_availability_zones" "available" {
