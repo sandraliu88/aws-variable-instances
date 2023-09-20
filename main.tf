@@ -19,7 +19,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.66.0"
   tags = {
-    purpose = "oeghaneyan-demo"
+    purpose = "sliu-demo"
   }
   for_each = var.project
 
@@ -37,7 +37,7 @@ module "app_security_group" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
   version = "3.17.0"
   tags = {
-    purpose = "oeghaneyan-demo"
+    purpose = "sliu-demo"
   }    
   for_each = var.project
 
@@ -52,7 +52,7 @@ module "lb_security_group" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
   version = "3.17.0"
   tags = {
-    purpose = "oeghaneyan-demo"
+    purpose = "sliu-demo"
   }    
   for_each = var.project
 
@@ -73,7 +73,7 @@ module "elb_http" {
   source  = "terraform-aws-modules/elb/aws"
   version = "2.4.0"
   tags = {
-    purpose = "oeghaneyan-demo"
+    purpose = "sliu-demo"
   }    
   for_each = var.project
 
@@ -84,9 +84,6 @@ module "elb_http" {
 
   security_groups = [module.lb_security_group[each.key].this_security_group_id]
   subnets         = module.vpc[each.key].public_subnets
-
-  number_of_instances = length(module.standard-instance[each.key].instance_ids)
-  instances           = module.standard-instance[each.key].instance_ids
 
   listener = [{
     instance_port     = "80"
